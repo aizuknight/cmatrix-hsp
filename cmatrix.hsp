@@ -1,0 +1,38 @@
+#include "hsp3dish.as"
+
+font_size_x = 10
+font_size_y = 10
+space_probability = 0.5
+char_amount_x = 640 / font_size_x
+char_amount_y = 480 / font_size_y
+sdim virtual_buffer, char_amount_x * 8, char_amount_y
+redraw 0
+*main
+	for i, char_amount_y - 1, 0, -1
+		virtual_buffer(i) = virtual_buffer(i - 1)
+	next
+	virtual_buffer(0) = ""
+	for i, 0, char_amount_x
+		random_number = rnd(100)
+		if random_number < space_probability * 100 {
+			poke virtual_buffer(0), i, 32
+		} else {
+			poke virtual_buffer(0), i, 33 + rnd(127 - 33)
+		}
+	next
+	redraw 0
+	color 0, 0, 0
+	boxf
+	for i, 0, char_amount_y
+		y = i * font_size_y
+		for j, 0, char_amount_x
+			x = j * font_size_x
+			pos x, y
+			font "Courier New", font_size_y, 0
+			color rnd(256), rnd(256), rnd(256)
+			mes strf("%c", peek(virtual_buffer(i), j))
+		next
+	next
+	redraw 1
+	wait 10
+	goto *main
