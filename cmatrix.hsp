@@ -5,19 +5,19 @@ font_size_y = 10
 space_probability = 0.5
 char_amount_x = 640 / font_size_x
 char_amount_y = 480 / font_size_y
-sdim virtual_buffer, char_amount_x * 8, char_amount_y
+sdim additional_buffer, char_amount_x * 8, char_amount_y
 redraw 0
 *main
 	for i, char_amount_y - 1, 0, -1
-		virtual_buffer(i) = virtual_buffer(i - 1)
+		additional_buffer(i) = additional_buffer(i - 1)
 	next
-	virtual_buffer(0) = ""
+	additional_buffer(0) = ""
 	for i, 0, char_amount_x
 		random_number = rnd(100)
 		if random_number < space_probability * 100 {
-			poke virtual_buffer(0), i, 32
+			poke additional_buffer(0), i, 32
 		} else {
-			poke virtual_buffer(0), i, 33 + rnd(127 - 33)
+			poke additional_buffer(0), i, 33 + rnd(127 - 33)
 		}
 	next
 	redraw 0
@@ -30,7 +30,7 @@ redraw 0
 			pos x, y
 			font "Courier New", font_size_y, 0
 			color rnd(256), rnd(256), rnd(256)
-			mes strf("%c", peek(virtual_buffer(i), j))
+			mes strf("%c", peek(additional_buffer(i), j))
 		next
 	next
 	redraw 1
