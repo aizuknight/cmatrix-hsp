@@ -1,4 +1,4 @@
-# cmatrix-hsp
+# hspmatrix
 Emulates cmatrix with [OpenHSP/Hot Soup Processor(HSP3)](https://github.com/onitama/OpenHSP)
 # Screenshot
 ![image](img/screenshot.png)
