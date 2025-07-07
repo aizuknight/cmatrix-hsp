@@ -1,7 +1,7 @@
 # cmatrix-hsp
 Emulates cmatrix with [OpenHSP/Hot Soup Processor(HSP3)](https://github.com/onitama/OpenHSP)
 # Screenshot
-[!image](img/screenshot.png)
+![image](img/screenshot.png)
 # Environment
 Confirmed working with:
 - HSP3.7beta10 at [9553278](https://github.com/onitama/OpenHSP/tree/9553278dde6659bc980721729971bde0e143bffa) on Ubuntu22.04.5 LTS.
